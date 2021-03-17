@@ -6,6 +6,7 @@ import {
     withEmailVerification,
 } from '../Session';
 import { withFirebase } from '../Firebase';
+import { jobs } from '../../constants/jobs.js';
 
 const HomePage = () => (
     <div>
@@ -60,6 +61,7 @@ class MessagesBase extends Component {
     };
 
     componentDidMount() {
+        console.log(jobs);
         this.setState({ loading: true });
 
         this.props.firebase.messages().on('value', snapshot => {
