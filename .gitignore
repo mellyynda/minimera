@@ -24,3 +24,7 @@ yarn-error.log*
 
 # security
 /src/components/Firebase/config.js
+
+# lock files
+package-lock.json
+yarn.lock
