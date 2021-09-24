@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { compose } from 'recompose';
+import React, { Component, useState, useEffect } from 'react';
 import {
     AuthUserContext,
     withAuthorization,
@@ -8,8 +7,41 @@ import {
 import { withFirebase } from '../Firebase';
 import { jobs } from '../../constants/jobs.js';
 
+
+console.log(jobs);
+
+const JobPostings = () => {
+    const [jobData, setJobData] = useState(null);
+
+    const openings = jobs.reduce((acc, value) => {
+
+        acc[value.agency] ? acc[value.agency] += 1 : acc[value.agency] = 1;
+
+        // if (acc[value.agency]) {
+        //     acc[value.agency] += 1;
+        // } else {
+        //     acc[value.agency] = 1;
+        // }
+        return acc
+    }, {});
+
+    useEffect(() => {
+        console.log('hej fr[n useEffect');
+        setJobData(openings);
+    }, [])
+
+
+    return (<>{jobData && <JobGraph data={jobData} />}</>)
+}
+
+const JobGraph = props => {
+
+    return (<div>my graph</div>)
+}
+
 const HomePage = () => (
     <div>
+        <JobPostings />
         <h1>Home Page</h1>
         <p>The Home Page is accessible by every signed in user.</p>
 
@@ -104,8 +136,8 @@ class MessagesBase extends Component {
                                 onRemoveMessage={this.onRemoveMessage}
                             />
                         ) : (
-                                <div>There are no messages ...</div>
-                            )}
+                            <div>There are no messages ...</div>
+                        )}
 
                         <form onSubmit={event => this.onCreateMessage(event, authUser)}>
                             <input
@@ -176,11 +208,11 @@ class MessageItem extends Component {
                         onChange={this.onChangeEditText}
                     />
                 ) : (
-                        <span>
-                            <strong>{message.userId}</strong> {message.text}
-                            {message.editedAt && <span>(Edited)</span>}
-                        </span>
-                    )}
+                    <span>
+                        <strong>{message.userId}</strong> {message.text}
+                        {message.editedAt && <span>(Edited)</span>}
+                    </span>
+                )}
 
                 {authUser.uid === message.userId && (
                     <span>
@@ -190,9 +222,9 @@ class MessageItem extends Component {
                                 <button onClick={this.onToggleEditMode}>Reset</button>
                             </span>
                         ) : (
-                                <button onClick={this.onToggleEditMode}>Edit</button>
+                            <button onClick={this.onToggleEditMode}>Edit</button>
 
-                            )}
+                        )}
 
                         {!editMode && (
                             <button
@@ -228,7 +260,4 @@ const condition = authUser => !!authUser;
 
 const Messages = withFirebase(MessagesBase);
 
-export default compose(
-    withEmailVerification,
-    withAuthorization(condition),
-)(HomePage);
+export default withEmailVerification(withAuthorization(condition)(HomePage));

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
@@ -63,15 +62,12 @@ class SignInFormBase extends Component {
                 />
                 <button disabled={isInvalid} type="submit">
                     Sign In
-</button>
+                </button>
                 {error && <p>{error.message}</p>}
             </form>
         );
     }
 }
-const SignInForm = compose(
-    withRouter,
-    withFirebase,
-)(SignInFormBase);
+const SignInForm = withRouter(withFirebase(SignInFormBase));
 export default SignInPage;
 export { SignInForm };
