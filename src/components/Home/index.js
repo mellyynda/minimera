@@ -2,13 +2,10 @@ import React, { Component, useState, useEffect } from 'react';
 import {
     AuthUserContext,
     withAuthorization,
-    withEmailVerification,
 } from '../Session';
 import { withFirebase } from '../Firebase';
 import { jobs } from '../../constants/jobs.js';
 
-
-console.log(jobs);
 
 const JobPostings = () => {
     const [jobData, setJobData] = useState(null);
@@ -26,7 +23,7 @@ const JobPostings = () => {
     }, {});
 
     useEffect(() => {
-        console.log('hej fr[n useEffect');
+        // console.log('hej från useEffect');
         setJobData(openings);
     }, [])
 
@@ -93,7 +90,7 @@ class MessagesBase extends Component {
     };
 
     componentDidMount() {
-        console.log(jobs);
+        // console.log(jobs);
         this.setState({ loading: true });
 
         this.props.firebase.messages().on('value', snapshot => {
@@ -260,4 +257,4 @@ const condition = authUser => !!authUser;
 
 const Messages = withFirebase(MessagesBase);
 
-export default withEmailVerification(withAuthorization(condition)(HomePage));
+export default withAuthorization(condition)(HomePage);

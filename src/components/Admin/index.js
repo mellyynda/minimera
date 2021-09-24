@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-import { withAuthorization, withEmailVerification } from '../Session';
+import { withAuthorization } from '../Session';
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 
@@ -157,4 +157,4 @@ const condition = authUser =>
 const UserList = withFirebase(UserListBase);
 const UserItem = withFirebase(UserItemBase);
 
-export default withEmailVerification(withAuthorization(condition)(withFirebase(AdminPage)));
+export default withAuthorization(condition)(withFirebase(AdminPage));
