@@ -1,6 +1,8 @@
 // import Button from '@mui/material/Button'
 
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
+// import * as MuiLink from '@mui/material/Link'
 import styled from 'styled-components'
 
 const LandingCover = styled.div`
@@ -37,13 +39,18 @@ p{
 }
 `
 
-const MainButton = styled.button`
+const MainButton = styled(Link)`
+display: block;
 width: 100%;
 padding: 20px 0;
+margin-bottom: 15px;
 border: 2px solid var(--main-color);
-color: var(--main-color);
+color: var(--main-color) !important;
+background-color: #fff;
 border-radius: 5px;
 font-size: 20px;
+text-align: center;
+text-decoration: none;
 `
 
 const Landing = () => (
@@ -53,8 +60,8 @@ const Landing = () => (
       <p>Låna saker av personer i din närhet istället för att köpa. </p>
     </section>
     <LinkSection>
-      <MainButton variant="outlined" size="large"> BLI MEDLEM </MainButton>
-      <p>Redan medlem? <Link color="inherit">Logga in</Link></p>
+      <MainButton to={ROUTES.SIGN_UP}>BLI MEDLEM</MainButton>
+      <p>Redan medlem? <Link to={ROUTES.SIGN_IN}>Logga in</Link></p>
     </LinkSection>
   </LandingCover>
 );
