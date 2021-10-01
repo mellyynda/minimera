@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'
+import { SignInLink } from '../SignIn'
 // import * as MuiLink from '@mui/material/Link'
 import styled from 'styled-components'
 
@@ -34,9 +35,6 @@ section {
 const LinkSection = styled.section`
 max-width: 250px;
 margin: 0 auto 15px;
-p{
-  text-align: right;
-}
 `
 
 const MainButton = styled(Link)`
@@ -61,7 +59,7 @@ const Landing = () => (
     </section>
     <LinkSection>
       <MainButton to={ROUTES.SIGN_UP}>BLI MEDLEM</MainButton>
-      <p>Redan medlem? <Link to={ROUTES.SIGN_IN}>Logga in</Link></p>
+      <SignInLink />
     </LinkSection>
   </LandingCover>
 );

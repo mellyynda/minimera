@@ -18,14 +18,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 a:visited {
   color: inherit;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 a:active {
