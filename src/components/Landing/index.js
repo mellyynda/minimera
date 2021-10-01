@@ -7,9 +7,9 @@ const LandingCover = styled.div`
 background: var(--main-color);
 height: 100vh;
 width: 100%;
-// display: flex;
-// flex-direction: column;
-// justify-content: flex-end;
+display: flex;
+flex-direction: column;
+justify-content: center;
 
 section {
   width: 85%;
@@ -30,12 +30,15 @@ section {
 `
 
 const LinkSection = styled.section`
+max-width: 250px;
+margin: 0 auto 15px;
+p{
+  text-align: right;
+}
 `
 
 const MainButton = styled.button`
 width: 100%;
-max-width: 250px;
-margin: 0 auto;
 padding: 20px 0;
 border: 2px solid var(--main-color);
 color: var(--main-color);
@@ -51,7 +54,7 @@ const Landing = () => (
     </section>
     <LinkSection>
       <MainButton variant="outlined" size="large"> BLI MEDLEM </MainButton>
-      <p>Redan medlem? <Link color="secondary">Logga in</Link></p>
+      <p>Redan medlem? <Link color="inherit">Logga in</Link></p>
     </LinkSection>
   </LandingCover>
 );
