@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -12,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import { Form, FormWrapper, MainButton, ContentWrapper } from '../Styled'
 
 import { withFirebase } from '../Firebase';
 import { SignInLink, StyledP } from '../SignIn';
@@ -19,32 +19,12 @@ import { SignInLink, StyledP } from '../SignIn';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
-export const MainForm = styled(Box)`
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-`
 
-export const MainButton = styled.button`
-display: block;
-width: 100%;
-padding: 20px 0;
-margin-bottom: 15px;
-border: 2px solid var(--main-color);
-color: #fff;
-background-color:var(--main-color) !important;
-border-radius: 5px;
-font-size: 20px;
-text-align: center;
-text-decoration: none;
-`
 
 const SignUpPage = () => (
-  <div>
+  <FormWrapper>
     <SignUpForm />
-  </div>
+  </FormWrapper>
 );
 
 const INITIAL_STATE = {
@@ -124,7 +104,7 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <MainForm
+      <Form
         onSubmit={this.onSubmit}
         component="form"
         sx={{
@@ -202,7 +182,7 @@ class SignUpFormBase extends Component {
 
         <SignInLink />
 
-      </MainForm>
+      </Form>
     );
   }
 }

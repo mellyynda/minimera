@@ -6,7 +6,8 @@ import { withFirebase } from '../Firebase';
 
 import TextField from '@mui/material/TextField';
 
-import { SignUpLink, MainButton, MainForm } from '../SignUp';
+import { Form, MainButton, FormWrapper } from '../Styled'
+import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 
 
@@ -19,9 +20,9 @@ text-align: right;
 `
 
 const SignInPage = () => (
-  <div>
+  <FormWrapper>
     <SignInForm />
-  </div>
+  </FormWrapper>
 );
 
 const INITIAL_STATE = {
@@ -55,7 +56,7 @@ class SignInFormBase extends Component {
     const { email, password, error } = this.state;
     const isInvalid = password === '' || email === '';
     return (
-      <MainForm
+      <Form
         onSubmit={this.onSubmit}
         component="form"
         sx={{
@@ -89,7 +90,7 @@ class SignInFormBase extends Component {
         {error && <p>{error.message}</p>}
         <PasswordForgetLink />
         <SignUpLink />
-      </MainForm>
+      </Form>
     );
   }
 }

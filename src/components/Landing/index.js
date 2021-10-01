@@ -1,15 +1,14 @@
-// import Button from '@mui/material/Button'
-
 import { Link } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
-import { SignInLink } from '../SignIn'
-// import * as MuiLink from '@mui/material/Link'
+
 import styled from 'styled-components'
 
-const LandingCover = styled.div`
+import { ContentWrapper } from '../Styled'
+import { SignInLink } from '../SignIn'
+
+import * as ROUTES from '../../constants/routes'
+
+const LandingCover = styled(ContentWrapper)`
 background: var(--main-color);
-height: 100vh;
-width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
