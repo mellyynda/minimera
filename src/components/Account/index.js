@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
 import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
@@ -10,7 +9,6 @@ const AccountPage = () => (
         {authUser => (
             <div>
                 <h1>Account: {authUser.email}</h1>
-                <PasswordForgetForm />
                 <PasswordChangeForm />
             </div>
         )}
