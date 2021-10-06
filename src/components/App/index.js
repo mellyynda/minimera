@@ -21,8 +21,6 @@ const App = () => (
   <Router>
     <MainWrapper>
       <ThemeProvider theme={theme}>
-        <Navigation />
-        <hr />
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route path={ROUTES.SIGN_IN} component={SignInPage} />
@@ -31,6 +29,8 @@ const App = () => (
         <Route path={ROUTES.HOME} component={HomePage} />
         <Route path={ROUTES.ACCOUNT} component={AccountPage} />
         <Route path={ROUTES.ADMIN} component={AdminPage} />
+
+        <Navigation />
       </ThemeProvider>
     </MainWrapper>
   </Router>

@@ -7,6 +7,7 @@ font-size: 40px;
 font-weight: 400;
 text-align: center;
 padding: 20px;
+margin: 0 !important;
 `
 
 export default MainHeading

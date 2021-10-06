@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import PasswordChangeForm from '../PasswordChange';
 import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
+import SignOutButton from '../SignOut';
 
 
 const AccountPage = () => (
-    <AuthUserContext.Consumer>
-        {authUser => (
-            <div>
-                <h1>Account: {authUser.email}</h1>
-                <PasswordChangeForm />
-            </div>
-        )}
-    </AuthUserContext.Consumer>
+  <AuthUserContext.Consumer>
+    {authUser => (
+      <div>
+        <h1>Account: {authUser.email}</h1>
+        <PasswordChangeForm />
+        <SignOutButton />
+      </div>
+    )}
+  </AuthUserContext.Consumer>
 );
 
 const condition = authUser => !!authUser;
