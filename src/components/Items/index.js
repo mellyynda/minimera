@@ -4,6 +4,7 @@ import {
   withAuthorization,
 } from '../Session';
 import { withFirebase } from '../Firebase';
+import ItemList from './ItemList.js';
 
 class ItemsBase extends Component {
   constructor(props) {
@@ -124,106 +125,6 @@ class ItemsBase extends Component {
       </AuthUserContext.Consumer>
     );
 
-  }
-}
-
-const ItemList = ({ authUser, items, onRemoveItem, onEditItem }) => (
-  <ul>
-    {items.map(item => (
-      <Item
-        authUser={authUser}
-        key={item.uid}
-        item={item}
-        onRemoveItem={onRemoveItem}
-        onEditItem={onEditItem}
-      />
-    ))}
-  </ul>
-);
-
-class Item extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editMode: false,
-      editTitle: this.props.item.title,
-      editDescription: this.props.item.description,
-    };
-  }
-
-  onToggleEditMode = () => {
-    this.setState(state => ({
-      editMode: !state.editMode,
-      editTitle: this.props.item.title,
-      editDescription: this.props.item.description,
-    }));
-  };
-
-  onChangeEditTitle = event => {
-    this.setState({ editTitle: event.target.value });
-  };
-
-  onChangeEditDescription = event => {
-    this.setState({ editDescription: event.target.value });
-  };
-
-  onSaveEdit = () => {
-    this.props.onEditItem(this.props.item, this.state.editTitle, this.state.editDescription);
-    this.setState({ editMode: false });
-  };
-
-  render() {
-    const { authUser, item, onRemoveItem } = this.props;
-    const { editMode, editTitle, editDescription } = this.state;
-
-    return (
-      <li>
-        {editMode ? (
-          <div>
-            <input
-              type="title"
-              value={editTitle}
-              onChange={this.onChangeEditTitle}
-            />
-            <input
-              type="description"
-              value={editDescription}
-              onChange={this.onChangeEditDescription}
-            />
-          </div>
-        ) : (
-          <div>
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-            {item.editedAt && <span>(Edited)</span>}
-          </div>
-        )}
-
-        {authUser.uid === item.userId && (
-          <span>
-            {editMode ? (
-              <span>
-                <button onClick={this.onSaveEdit}>Save</button>
-                <button onClick={this.onToggleEditMode}>Reset</button>
-              </span>
-            ) : (
-              <button onClick={this.onToggleEditMode}>Edit</button>
-
-            )}
-
-            {!editMode && (
-              <button
-                type="button"
-                onClick={() => onRemoveItem(item.uid)}
-              >
-                Delete
-              </button>
-            )}
-          </span>
-        )}
-
-      </li>
-    );
   }
 }
 

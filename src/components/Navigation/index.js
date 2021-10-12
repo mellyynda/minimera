@@ -45,7 +45,7 @@ const NavigationAuth = ({ authUser }) => {
           />
           <BottomNavigationAction
             component={Link}
-            to={ROUTES.HOME}
+            to={ROUTES.ABOUT}
             label="Om"
             value="about"
             icon={<InfoIcon />}
