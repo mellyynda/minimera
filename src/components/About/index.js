@@ -10,7 +10,7 @@ import { MainHeading } from '../Styled';
 const AboutPage = () => {
   const height = window.innerHeight - 56;
   return (
-    <Box maxWidth="sm" sx={{ '& > :not(style)': { m: 3 }, maxWidth: '350px', margin: '0 auto', height: height, overflow: 'auto' }}>
+    <Box maxWidth="sm" sx={{ '& > :not(style)': { m: 3 }, maxWidth: '350px', margin: '0 auto', height: height, overflow: 'auto', marginBottom: '56px' }}>
       <MainHeading>Hur funkar det?</MainHeading>
       <Card variant="outlined" sx={{ boxShadow: ' 0px 4px 4px 0 rgba(0, 0, 0, 25%), 0px 16px 24px 0 rgba(0, 0, 0, 14%), 0px 6px 30px 0 rgba(0, 0, 0, 12%)' }} >
         <CardContent>

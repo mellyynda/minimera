@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -8,21 +8,24 @@ import { MainHeading } from '../Styled';
 import Items from '../Items';
 
 const HomePage = () => {
+  const [openForm, setOpenForm] = useState(false);
 
   const fabStyle = {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 65,
     right: 16,
   };
 
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
+
       <MainHeading>Hem</MainHeading>
-      <Fab sx={fabStyle} color="primary" aria-label="add" style={{ zIndex: '400' }}>
+
+      <Fab onClick={() => setOpenForm(true)} sx={fabStyle} color="primary" aria-label="add" style={{ zIndex: '400' }}>
         <AddIcon />
       </Fab>
 
-      <Items />
+      <Items openForm={openForm} setOpenForm={setOpenForm} />
     </Box>
   )
 };

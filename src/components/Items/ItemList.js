@@ -14,7 +14,7 @@ const ItemList = ({ authUser, items, onRemoveItem, onEditItem }) => {
 
   return (
     <Container maxWidth="sm"
-      sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', maxHeight: height + 'px', overflow: 'auto' }}>
+      sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: '100px' }}>
       {items.map(item => (
         <Item
           authUser={authUser}

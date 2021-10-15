@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import {
-  AuthUserContext,
-  withAuthorization,
-} from '../Session';
+
+import Box from '@mui/material/Box';
+import DialogContent from '@mui/material/DialogContent';
+import Dialog from '@mui/material/Dialog';
+import TextField from '@mui/material/TextField';
+
+import { MainButton } from '../Styled'
+
+import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import ItemList from './ItemList.js';
+import { MainHeading } from '../Styled';
 
 class ItemsBase extends Component {
   constructor(props) {
@@ -15,6 +21,7 @@ class ItemsBase extends Component {
       description: '',
       loading: false,
       items: [],
+      error: false,
     };
   }
 
@@ -35,7 +42,7 @@ class ItemsBase extends Component {
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
 
-    this.setState({ title: '', description: '' });
+    this.setState({ title: '', description: '', error: false });
 
     event.preventDefault();
   };
@@ -87,7 +94,13 @@ class ItemsBase extends Component {
   }
 
   render() {
-    const { title, description, items, loading } = this.state;
+    const { title, description, items, loading, error } = this.state;
+    const { openForm, setOpenForm } = this.props;
+
+    const handleClose = () => {
+      setOpenForm(false);
+      this.setState({ error: false });
+    };
 
     return (
       <AuthUserContext.Consumer>
@@ -106,19 +119,50 @@ class ItemsBase extends Component {
               <div>There are no items ...</div>
             )}
 
-            <form onSubmit={event => this.onCreateItem(event, authUser)}>
-              <input
-                type="title"
-                value={title}
-                onChange={this.onChangeTitle}
-              />
-              <input
-                type="description"
-                value={description}
-                onChange={this.onChangeDescription}
-              />
-              <button type="submit">Send</button>
-            </form>
+            <Dialog onClose={handleClose} open={openForm}>
+              <MainHeading>Ny anons</MainHeading>
+              <DialogContent>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiTextField-root': { width: '100%' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                  onSubmit={event => {
+                    event.preventDefault();
+                    if (!title || !description) {
+                      this.setState({ error: true });
+                      return;
+                    };
+                    handleClose();
+                    this.onCreateItem(event, authUser);
+                  }}>
+                  <TextField
+                    error={error}
+                    label="Vad vill du låna ut?"
+                    variant="outlined"
+                    helperText={error ? 'Du måste kompletera alla fälten' : "Skriv gärna vad den är och vilken märke/model.Ex: Borrhammare (Bosch UNEO MAXX)."}
+                    type="title"
+                    value={title}
+                    onChange={this.onChangeTitle}
+                  />
+                  <TextField
+                    error={error}
+                    helperText={error ? 'Du måste kompletera alla fälten' : ''}
+                    label="Detaljer"
+                    variant="outlined"
+                    multiline
+                    rows={10}
+                    maxRows={40}
+                    type="description"
+                    value={description}
+                    onChange={this.onChangeDescription}
+                  />
+                  <MainButton type="submit" style={{ marginTop: "15px" }}>Send</MainButton>
+                </Box>
+              </DialogContent>
+            </Dialog>
 
           </div>
         )}

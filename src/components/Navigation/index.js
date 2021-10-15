@@ -62,8 +62,8 @@ const NavigationAuth = ({ authUser }) => {
             <BottomNavigationAction
               component={Link}
               to={ROUTES.ADMIN}
-              label="Min profil"
-              value="profile"
+              label="Admin"
+              value="admin"
               icon={<AdminPannelSettingsIcon />}
             />
           )}
