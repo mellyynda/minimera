@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import ItemPage from './ItemPage';
 
 class Item extends Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class Item extends Component {
       editMode: false,
       editTitle: this.props.item.title,
       editDescription: this.props.item.description,
+      editContact: this.props.item.contact,
       error: false,
+      viewItem: false,
     };
   }
 
@@ -28,6 +31,7 @@ class Item extends Component {
       editMode: !state.editMode,
       editTitle: this.props.item.title,
       editDescription: this.props.item.description,
+      editContact: this.props.item.contact,
       error: false,
     }));
   };
@@ -40,12 +44,16 @@ class Item extends Component {
     this.setState({ editDescription: event.target.value });
   };
 
+  onChangeEditContact = event => {
+    this.setState({ editContact: event.target.value });
+  };
+
   onSaveEdit = () => {
-    if (!this.state.editTitle || !this.state.editDescription) {
+    if (!this.state.editTitle || !this.state.editDescription || !this.state.editContact) {
       this.setState({ error: true });
       return;
     };
-    this.props.onEditItem(this.props.item, this.state.editTitle, this.state.editDescription);
+    this.props.onEditItem(this.props.item, this.state.editTitle, this.state.editDescription, this.state.editContact);
     this.setState({ editMode: false });
   };
 
@@ -55,9 +63,13 @@ class Item extends Component {
     } else this.onToggleEditMode();
   }
 
+  toggleItemView = () => {
+    this.setState(prevState => ({ viewItem: !prevState.viewItem }));
+  }
+
   render() {
     const { authUser, item, onRemoveItem } = this.props;
-    const { editMode, editTitle, editDescription, error } = this.state;
+    const { editMode, editTitle, editDescription, editContact, error, viewItem } = this.state;
 
     return (
       <Box sx={{ width: '48%', marginBottom: '13px' }}>
@@ -85,10 +97,21 @@ class Item extends Component {
                   variant="outlined"
                   multiline
                   rows={10}
-                  maxRows={40}
                   type="description"
                   value={editDescription}
                   onChange={this.onChangeEditDescription}
+                  style={{ marginTop: '15px' }}
+                />
+
+                <TextField
+                  error={error}
+                  label="Kontakt detaljer"
+                  variant="outlined"
+                  helperText={error ? 'Du måste kompletera alla fälten' : "Ex: telefonnummer eller mejl adress"}
+                  type="contact"
+                  value={editContact}
+                  onChange={this.onChangeEditContact}
+                  style={{ marginTop: '15px' }}
                 />
               </Box>
             </DialogContent>
@@ -102,13 +125,19 @@ class Item extends Component {
           </Dialog>
         ) : (
           <Box>
-            <Card variant="outlined" sx={{ height: 180, width: '100%', overflow: 'hidden', position: 'relative', background: '#E7F3F3' }} >
+            <Card variant="outlined" sx={{ height: 180, width: '100%', overflow: 'hidden', position: 'relative', background: '#E7F3F3', boxShadow: '2px 4px 4px rgb(0 0 0 / 0.15)' }} >
               <CardContent>
-                <Typography variant="h5" component="div">{item.title}</Typography>
+                <Typography variant="subtitle1" component="div" style={{ fontWeight: '500' }}>{item.title}</Typography>
                 <Typography variant="body2">{item.description}</Typography>
               </CardContent>
               <CardActions sx={{ position: 'absolute', bottom: '0', left: '0', background: '#E7F3F3', width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                <Button size="small" >Läs mer</Button>
+                <Button
+                  variant="text"
+                  size="small"
+                  onClick={this.toggleItemView}
+                >
+                  Läs mer
+                </Button>
                 {authUser.uid === item.userId && (
                   <span>
                     <EditOutlined fontSize="small" onClick={this.onToggleEditMode} style={{ marginRight: '6px' }} />
@@ -120,6 +149,7 @@ class Item extends Component {
           </Box>
         )}
 
+        {viewItem ? <ItemPage viewItem={viewItem} toggleItemView={this.toggleItemView} item={item} /> : null}
       </Box>
     );
   }

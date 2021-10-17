@@ -12,6 +12,7 @@ border-radius: 5px;
 font-size: 20px;
 text-align: center;
 text-decoration: none;
+cursor: pointer;
 `
 
 export default MainButton

@@ -15,8 +15,11 @@ import AboutPage from '../About';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import { withAuthentication } from '../Session';
+import ItemPage from '../Items/ItemPage';
 
 import * as ROUTES from '../../constants/routes';
+import { SINGLE_ITEM } from '../../constants/routes';
+import MyItems from '../Account/MyItems';
 
 const App = () => (
   <Router>
@@ -29,6 +32,7 @@ const App = () => (
 
         <Route path={ROUTES.HOME} component={HomePage} />
         <Route path={ROUTES.ABOUT} component={AboutPage} />
+        <Route path={ROUTES.MY_ITEMS} component={MyItems} />
         <Route path={ROUTES.ACCOUNT} component={AccountPage} />
         <Route path={ROUTES.ADMIN} component={AdminPage} />
 

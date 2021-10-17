@@ -9,6 +9,7 @@ import Items from '../Items';
 
 const HomePage = () => {
   const [openForm, setOpenForm] = useState(false);
+  const own = false;
 
   const fabStyle = {
     position: 'fixed',
@@ -25,7 +26,7 @@ const HomePage = () => {
         <AddIcon />
       </Fab>
 
-      <Items openForm={openForm} setOpenForm={setOpenForm} />
+      <Items openForm={openForm} setOpenForm={setOpenForm} own={own} />
     </Box>
   )
 };

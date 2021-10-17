@@ -36,7 +36,7 @@ max-width: 250px;
 margin: 0 auto 15px;
 `
 
-const MainButton = styled(Link)`
+export const MainButton = styled(Link)`
 display: block;
 width: 100%;
 padding: 20px 0;

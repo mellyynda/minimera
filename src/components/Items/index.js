@@ -19,6 +19,7 @@ class ItemsBase extends Component {
     this.state = {
       title: '',
       description: '',
+      contact: '',
       loading: false,
       items: [],
       error: false,
@@ -33,16 +34,21 @@ class ItemsBase extends Component {
     this.setState({ description: event.target.value });
   };
 
+  onChangeContact = event => {
+    this.setState({ contact: event.target.value });
+  };
+
   onCreateItem = (event, authUser) => {
 
     this.props.firebase.items().push({
       title: this.state.title,
       description: this.state.description,
+      contact: this.state.contact,
       userId: authUser.uid,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
 
-    this.setState({ title: '', description: '', error: false });
+    this.setState({ title: '', description: '', contact: '', error: false });
 
     event.preventDefault();
   };
@@ -53,13 +59,14 @@ class ItemsBase extends Component {
     }
   };
 
-  onEditItem = (item, title, description) => {
+  onEditItem = (item, title, description, contact) => {
     const { uid, ...itemSnapshot } = item;
 
     this.props.firebase.item(item.uid).set({
       ...itemSnapshot,
       title,
       description,
+      contact,
       editedAt: this.props.firebase.serverValue.TIMESTAMP,
     });
   };
@@ -94,8 +101,8 @@ class ItemsBase extends Component {
   }
 
   render() {
-    const { title, description, items, loading, error } = this.state;
-    const { openForm, setOpenForm } = this.props;
+    const { title, description, contact, items, loading, error } = this.state;
+    const { openForm, setOpenForm, own } = this.props;
 
     const handleClose = () => {
       setOpenForm(false);
@@ -114,6 +121,7 @@ class ItemsBase extends Component {
                 items={items}
                 onEditItem={this.onEditItem}
                 onRemoveItem={this.onRemoveItem}
+                own={own}
               />
             ) : (
               <div>There are no items ...</div>
@@ -131,7 +139,7 @@ class ItemsBase extends Component {
                   autoComplete="off"
                   onSubmit={event => {
                     event.preventDefault();
-                    if (!title || !description) {
+                    if (!title || !description || !contact) {
                       this.setState({ error: true });
                       return;
                     };
@@ -142,22 +150,32 @@ class ItemsBase extends Component {
                     error={error}
                     label="Vad vill du låna ut?"
                     variant="outlined"
-                    helperText={error ? 'Du måste kompletera alla fälten' : "Skriv gärna vad den är och vilken märke/model.Ex: Borrhammare (Bosch UNEO MAXX)."}
+                    helperText={error ? 'Du måste kompletera alla fälten' : "Ge en kort klart namn"}
                     type="title"
                     value={title}
                     onChange={this.onChangeTitle}
                   />
                   <TextField
                     error={error}
-                    helperText={error ? 'Du måste kompletera alla fälten' : ''}
+                    helperText={error ? 'Du måste kompletera alla fälten' : 'Skriv gärna vilken märke/model.Ex: Borrhammare (Bosch UNEO MAXX).'}
                     label="Detaljer"
                     variant="outlined"
                     multiline
                     rows={10}
-                    maxRows={40}
                     type="description"
                     value={description}
                     onChange={this.onChangeDescription}
+                    style={{ marginTop: '15px' }}
+                  />
+                  <TextField
+                    error={error}
+                    helperText={error ? 'Du måste kompletera alla fälten' : 'Hur vill du vara kontaktat? Ex: telefonnummer eller mejl adress'}
+                    label="Kontakt detaljer"
+                    variant="outlined"
+                    type="contact"
+                    value={contact}
+                    onChange={this.onChangeContact}
+                    style={{ marginTop: '15px' }}
                   />
                   <MainButton type="submit" style={{ marginTop: "15px" }}>Send</MainButton>
                 </Box>
