@@ -13,8 +13,8 @@ const ItemList = ({ authUser, items, onRemoveItem, onEditItem, own }) => {
   const height = window.innerHeight - 180;
 
   return (
-    <Container maxWidth="sm"
-      sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: '100px' }}>
+    <Container
+      sx={{ maxWidth: { md: '850px' }, display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
       {items.map(item => {
         if (own && authUser.uid === item.userId) {
           return (<Item

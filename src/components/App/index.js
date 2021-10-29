@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { ThemeProvider } from '@mui/material/styles'
@@ -15,31 +15,37 @@ import AboutPage from '../About';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import { withAuthentication } from '../Session';
-import ItemPage from '../Items/ItemPage';
+import { AuthUserContext } from '../Session';
 
 import * as ROUTES from '../../constants/routes';
-import { SINGLE_ITEM } from '../../constants/routes';
 import MyItems from '../Account/MyItems';
 
-const App = () => (
-  <Router>
-    <MainWrapper>
-      <ThemeProvider theme={theme}>
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+const App = () => {
 
-        <Route path={ROUTES.HOME} component={HomePage} />
-        <Route path={ROUTES.ABOUT} component={AboutPage} />
-        <Route path={ROUTES.MY_ITEMS} component={MyItems} />
-        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-        <Route path={ROUTES.ADMIN} component={AdminPage} />
+  return (
+    <Router>
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <MainWrapper authUser={authUser} >
+            <ThemeProvider theme={theme}>
+              <Route exact path={ROUTES.LANDING} component={LandingPage} />
+              <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+              <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+              <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
 
-        <Navigation />
-      </ThemeProvider>
-    </MainWrapper>
-  </Router>
-);
+              <Route path={ROUTES.HOME} component={HomePage} />
+              <Route path={ROUTES.ABOUT} component={AboutPage} />
+              <Route path={ROUTES.MY_ITEMS} component={MyItems} />
+              <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+              <Route path={ROUTES.ADMIN} component={AdminPage} />
+
+              <Navigation />
+            </ThemeProvider>
+          </MainWrapper>
+        )}
+      </AuthUserContext.Consumer>
+    </Router>
+  )
+};
 
 export default withAuthentication(App);

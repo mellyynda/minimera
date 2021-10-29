@@ -22,6 +22,7 @@ section {
   font-weight: 400;
   font-size: 80px;
   margin-bottom: 35px;
+  text-shadow: 2px 2px 1px #8c8c8c, 2px 2px 23px rgba(0, 0, 0, 40%);
   }
   p {
     color: #fff;

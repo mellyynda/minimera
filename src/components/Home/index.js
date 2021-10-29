@@ -13,13 +13,14 @@ const HomePage = () => {
 
   const fabStyle = {
     position: 'fixed',
-    bottom: 65,
-    right: 16,
+    bottom: { xs: 65, md: 'auto' },
+    right: { xs: 16, md: window.innerWidth / 2 - 28 },
+    top: { xs: 'auto', md: '28px' },
+    background: { md: '#223843' }
   };
 
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-
+    <Box>
       <MainHeading>Hem</MainHeading>
 
       <Fab onClick={() => setOpenForm(true)} sx={fabStyle} color="primary" aria-label="add" style={{ zIndex: '400' }}>

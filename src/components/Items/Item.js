@@ -72,7 +72,7 @@ class Item extends Component {
     const { editMode, editTitle, editDescription, editContact, error, viewItem } = this.state;
 
     return (
-      <Box sx={{ width: '48%', marginBottom: '13px' }}>
+      <Box sx={{ flex: { xs: '0 1 100%', sm: '0 1 49%', md: '0 1 32%' }, marginBottom: '13px' }}>
         {editMode ? (
 
           <Dialog onClose={this.handleClose} open={editMode}>
