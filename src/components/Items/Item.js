@@ -209,8 +209,8 @@ class Item extends Component {
                 </Button>
                 {authUser.uid === item.userId && (
                   <span>
-                    <EditOutlined fontSize="small" onClick={this.onToggleEditMode} style={{ marginRight: '6px' }} />
-                    <DeleteOutlined fontSize="small" onClick={() => onRemoveItem(item.uid)} />
+                    <EditOutlined fontSize="small" onClick={this.onToggleEditMode} style={{ marginRight: '6px', color: 'rgba(0, 0, 0, 0.6)' }} />
+                    <DeleteOutlined fontSize="small" onClick={() => onRemoveItem(item.uid)} style={{ color: 'rgba(0, 0, 0, 0.6)' }} />
                   </span>
                 )}
               </CardActions>
@@ -218,7 +218,7 @@ class Item extends Component {
           </Box>
         )}
 
-        {viewItem ? <ItemPage viewItem={viewItem} toggleItemView={this.toggleItemView} item={item} /> : null}
+        {viewItem ? <ItemPage viewItem={viewItem} toggleItemView={this.toggleItemView} item={item} image={images[item.title][0]} /> : null}
       </Box>
     );
   }

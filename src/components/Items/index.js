@@ -192,8 +192,8 @@ class ItemsBase extends Component {
                   />
                   <TextField
                     error={errorC}
-                    helperText={errorC ? 'Du måste kompletera alla fälten' : 'Hur vill du vara kontaktat? Ex: telefonnummer eller mejl adress'}
-                    label="Kontakt detaljer"
+                    helperText={errorC ? 'Du måste kompletera alla fälten' : 'För närvarande kan du bara lägga till ditt telefonnummer.'}
+                    label="Telefonnummer"
                     variant="outlined"
                     type="contact"
                     value={contact}
