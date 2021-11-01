@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import DialogContent from '@mui/material/DialogContent';
 import Dialog from '@mui/material/Dialog';
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { MainButton } from '../Styled'
 
@@ -22,20 +24,25 @@ class ItemsBase extends Component {
       contact: '',
       loading: false,
       items: [],
-      error: false,
+      errorT: false,
+      errorD: false,
+      errorC: false,
     };
   }
 
   onChangeTitle = event => {
     this.setState({ title: event.target.value });
+    this.setState({ errorT: false });
   };
 
   onChangeDescription = event => {
     this.setState({ description: event.target.value });
+    this.setState({ errorD: false });
   };
 
   onChangeContact = event => {
     this.setState({ contact: event.target.value });
+    this.setState({ errorC: false });
   };
 
   onCreateItem = (event, authUser) => {
@@ -48,7 +55,7 @@ class ItemsBase extends Component {
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
 
-    this.setState({ title: '', description: '', contact: '', error: false });
+    this.setState({ title: '', description: '', contact: '', errorT: false, errorD: false, errorC: false });
 
     event.preventDefault();
   };
@@ -101,12 +108,12 @@ class ItemsBase extends Component {
   }
 
   render() {
-    const { title, description, contact, items, loading, error } = this.state;
+    const { title, description, contact, items, loading, errorT, errorD, errorC } = this.state;
     const { openForm, setOpenForm, own } = this.props;
 
     const handleClose = () => {
       setOpenForm(false);
-      this.setState({ error: false });
+      this.setState({ errorT: false, errorD: false, errorC: false });
     };
 
     return (
@@ -129,7 +136,15 @@ class ItemsBase extends Component {
 
             <Dialog onClose={handleClose} open={openForm}>
               <MainHeading>Ny anons</MainHeading>
-              <DialogContent>
+              <DialogContent position='relative'>
+                <IconButton
+                  edge={false}
+                  aria-label="close"
+                  onClick={handleClose}
+                  sx={{ position: 'absolute', top: '5px', right: '5px' }}
+                >
+                  <CloseIcon />
+                </IconButton>
                 <Box
                   component="form"
                   sx={{
@@ -139,25 +154,33 @@ class ItemsBase extends Component {
                   autoComplete="off"
                   onSubmit={event => {
                     event.preventDefault();
-                    if (!title || !description || !contact) {
-                      this.setState({ error: true });
+                    if (!title) {
+                      this.setState({ errorT: true });
+                      return;
+                    };
+                    if (!description) {
+                      this.setState({ errorD: true });
+                      return;
+                    };
+                    if (!contact) {
+                      this.setState({ errorC: true });
                       return;
                     };
                     handleClose();
                     this.onCreateItem(event, authUser);
                   }}>
                   <TextField
-                    error={error}
+                    error={errorT}
                     label="Vad vill du låna ut?"
                     variant="outlined"
-                    helperText={error ? 'Du måste kompletera alla fälten' : "Ge en kort klart namn"}
+                    helperText={errorT ? 'Du måste kompletera alla fälten' : "Ge en kort klart namn"}
                     type="title"
                     value={title}
                     onChange={this.onChangeTitle}
                   />
                   <TextField
-                    error={error}
-                    helperText={error ? 'Du måste kompletera alla fälten' : 'Skriv gärna vilken märke/model.Ex: Borrhammare (Bosch UNEO MAXX).'}
+                    error={errorD}
+                    helperText={errorD ? 'Du måste kompletera alla fälten' : 'Skriv gärna vilken märke/model.Ex: Borrhammare (Bosch UNEO MAXX).'}
                     label="Detaljer"
                     variant="outlined"
                     multiline
@@ -168,8 +191,8 @@ class ItemsBase extends Component {
                     style={{ marginTop: '15px' }}
                   />
                   <TextField
-                    error={error}
-                    helperText={error ? 'Du måste kompletera alla fälten' : 'Hur vill du vara kontaktat? Ex: telefonnummer eller mejl adress'}
+                    error={errorC}
+                    helperText={errorC ? 'Du måste kompletera alla fälten' : 'Hur vill du vara kontaktat? Ex: telefonnummer eller mejl adress'}
                     label="Kontakt detaljer"
                     variant="outlined"
                     type="contact"

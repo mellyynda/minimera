@@ -3,6 +3,8 @@ import styled from 'styled-components'
 const MainButton = styled.button`
 display: block;
 width: 100%;
+max-width: 250px;
+margin: 0 auto;
 padding: 20px 0;
 margin-bottom: 15px;
 border: 2px solid var(--main-color);

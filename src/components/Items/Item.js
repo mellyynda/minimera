@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
+import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -12,6 +13,66 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import ItemPage from './ItemPage';
+import b from '../../assets/cards/Borrhammare.jpg';
+import bs from '../../assets/cards/BorrhammareS.jpg';
+import h from '../../assets/cards/Hund.jpg';
+import hs from '../../assets/cards/HundS.jpg';
+import l from '../../assets/cards/Lövblåsare.jpg';
+import ls from '../../assets/cards/LövblåsareS.jpg';
+import bi from '../../assets/cards/Bil.jpg';
+import bis from '../../assets/cards/BilS.jpg';
+import cy from '../../assets/cards/Cykel.jpg';
+import cys from '../../assets/cards/CykelS.jpg';
+import at from '../../assets/cards/Atefallshus.jpg';
+import ats from '../../assets/cards/AtefallshusS.jpg';
+import az from '../../assets/cards/abcd.jpg';
+import azs from '../../assets/cards/abcdS.jpg';
+import mt from '../../assets/cards/motorsåg.jpg';
+import mts from '../../assets/cards/motorsågS.jpg';
+import gt from '../../assets/cards/Gitarr.jpg';
+import gts from '../../assets/cards/GitarrS.jpg';
+import ha from '../../assets/cards/häst.jpg';
+import has from '../../assets/cards/hästS.jpg';
+import jk from '../../assets/cards/jkkkkkkk.jpg';
+import jks from '../../assets/cards/jkkkkkkkS.jpg';
+import hw from '../../assets/cards/halloween.jpg';
+import hws from '../../assets/cards/halloweenS.jpg';
+import co from '../../assets/cards/Coin.jpg';
+import cos from '../../assets/cards/CoinS.jpg';
+import aa from '../../assets/cards/a.jpg';
+import aas from '../../assets/cards/aS.jpg';
+import bb from '../../assets/cards/zebra.jpg';
+import bbs from '../../assets/cards/zebraS.jpg';
+import lg from '../../assets/cards/rake.jpg';
+import lgs from '../../assets/cards/rakeS.jpg';
+import fb from '../../assets/cards/ball.jpg';
+import fbs from '../../assets/cards/ballS.jpg';
+import ugh from '../../assets/cards/ugh.jpg';
+import ughs from '../../assets/cards/ughS.jpg';
+import rb from '../../assets/cards/rb.jpg';
+import rbs from '../../assets/cards/rbS.jpg';
+
+const images = {
+  'Borrhammare': [b, bs],
+  'Hund': [h, hs],
+  'Lövblåsare': [l, ls],
+  'Bil': [bi, bis],
+  'Cykel': [cy, cys],
+  'Atefallshus': [at, ats],
+  'abcd': [az, azs],
+  'motorsåg': [mt, mts],
+  'Gitarr': [gt, gts],
+  'häst': [ha, has],
+  'jkkkkkkk': [jk, jks],
+  'Hallowen kostym': [hw, hws],
+  'Guldpeng gratis': [co, cos],
+  'a': [aa, aas],
+  'b': [bb, bbs],
+  'Löv och grässamlare': [lg, lgs],
+  'Fitness boll': [fb, fbs],
+  'Dresdsgdvsd': [ugh, ughs],
+  'Robot dammsugare': [rb, rbs],
+};
 
 class Item extends Component {
   constructor(props) {
@@ -58,7 +119,7 @@ class Item extends Component {
   };
 
   handleClose = () => {
-    if (window.confirm('Do you want to save yout changes?')) {
+    if (window.confirm('Do you want to save your changes?')) {
       this.onSaveEdit();
     } else this.onToggleEditMode();
   }
@@ -125,7 +186,15 @@ class Item extends Component {
           </Dialog>
         ) : (
           <Box>
-            <Card variant="outlined" sx={{ height: 180, width: '100%', overflow: 'hidden', position: 'relative', background: '#E7F3F3', boxShadow: '2px 4px 4px rgb(0 0 0 / 0.15)' }} >
+            <Card variant="outlined" sx={{ height: 280, width: '100%', overflow: 'hidden', position: 'relative', background: '#E7F3F3', boxShadow: '2px 4px 4px rgb(0 0 0 / 0.15)' }} >
+              {images[item.title] &&
+                <CardMedia
+                  component="img"
+                  height="165"
+                  image={images[item.title][1]}
+                  alt={item.title}
+                />}
+              {/* <img style={{ width: '60px' }} src={image} alt='test' /> */}
               <CardContent>
                 <Typography variant="subtitle1" component="div" style={{ fontWeight: '500' }}>{item.title}</Typography>
                 <Typography variant="body2">{item.description}</Typography>

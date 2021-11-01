@@ -20,8 +20,8 @@ import * as ROUTES from '../../constants/routes';
 
 
 const AdminPage = () => (
-  <Box maxWidth="md" sx={{ '& > :not(style)': { m: 3 }, margin: '0 auto' }}>
-    <MainHeading>Admin</MainHeading>
+  <Box>
+    <MainHeading style={{ paddingLeft: '24px' }}>Admin</MainHeading>
     <Switch>
       <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
       <Route exact path={ROUTES.ADMIN} component={UserList} />
@@ -65,44 +65,57 @@ class UserListBase extends Component {
     const { users, loading } = this.state;
 
     return (
-      <div>
-        <Typography variant="h6" gutterBottom component="div">Användarlista:</Typography>
+      <Box sx={{ '& > ': { m: 3 }, margin: '0 auto', overflow: 'auto', marginBottom: '56px', maxWidth: { xs: 360, md: 850 } }}>
+        <Typography variant="h6" gutterBottom component="div" sx={{ color: 'rgba(0, 0, 0, 0.6)', padding: { xs: '0 15px', md: '0' } }}>Användarlista:</Typography>
         {loading && <div>Loading ...</div>}
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
 
-          {users.map(user => (
-            <StyledLink key={user.uid}
-              to={{
-                pathname: `${ROUTES.ADMIN}/${user.uid}`,
-                state: { user },
-              }}>
-              <ListItem alignItems="center">
-                <ListItemAvatar>
-                  <PersonIcon fontSize="large" style={{ color: 'var(--main-color)' }} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={user.username}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        {user.email}
-                      </Typography>
-                      {` — ${user.uid.substring(0, 4)}...`}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <Divider variant="inset" component="li" />
-            </StyledLink>
-          ))}
+        {!(users.length > 0) && !loading ?
+          <Typography variant="h6" gutterBottom component="div" sx={{ color: 'rgba(0, 0, 0, 0.6)' }}>No users to display.</Typography>
+          :
+          <List sx={{ width: '100%', marginLeft: 0, bgcolor: 'background.paper' }}>
+            {users.map(user => (
+              <StyledLink key={user.uid}
+                to={{
+                  pathname: `${ROUTES.ADMIN}/${user.uid}`,
+                  state: { user },
+                }}>
+                <ListItem alignItems="center">
+                  <ListItemAvatar>
+                    <PersonIcon fontSize="large" style={{ color: 'var(--main-color)' }} />
+                  </ListItemAvatar>
+                  <ListItemText
+                    sx={{ '& > *': { display: { md: 'inline !important' } }, position: 'relative' }}
+                    primary={user.username}
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: 'inline', position: { md: 'absolute' }, left: { md: '240px' } }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {user.email + ' '}
+                        </Typography>
 
-        </List>
-      </div>
+                        <Typography
+                          sx={{ display: 'inline', position: { md: 'absolute' }, right: { md: '0' } }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          {user.uid}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider component="li" />
+              </StyledLink>
+            ))}
+          </List>
+        }
+
+      </Box>
     );
   }
 }
@@ -142,7 +155,7 @@ class UserItemBase extends Component {
   render() {
     const { user, loading } = this.state;
     return (
-      <div>
+      <Box sx={{ '& > ': { m: 3 }, margin: '0 auto', overflow: 'auto', marginBottom: '56px', maxWidth: { xs: 360, md: 850 } }}>
         <StyledLink to={ROUTES.ADMIN}>
           <IconButton
             edge={false}
@@ -152,17 +165,17 @@ class UserItemBase extends Component {
             <ArrowBackIosNewIcon />
           </IconButton>
         </StyledLink>
-        <Typography variant="h6" gutterBottom component="div">Användare</Typography>
         {loading && <div>Loading ...</div>}
         {user && (
-          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-            <ListItem alignItems="flex-start">
+          <List sx={{ width: '100%', maxWidth: { xs: 360, md: 550 }, bgcolor: 'background.paper' }}>
+            <ListItem alignItems="flex-start" sx={{ padding: { md: '5px 0 !important' } }}>
               <ListItemText
+                sx={{ '& > *': { display: { md: 'inline !important' } } }}
                 primary='Användarnamn:'
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ fontWeight: '500', display: 'inline', position: { md: 'absolute' }, left: { md: '240px' } }}
                       component="span"
                       variant="body2"
                       color="text.primary"
@@ -173,13 +186,15 @@ class UserItemBase extends Component {
                 }
               />
             </ListItem>
-            <ListItem alignItems="flex-start">
+            <Divider component="li" />
+            <ListItem alignItems="flex-start" sx={{ padding: { md: '5px 0 !important' } }}>
               <ListItemText
+                sx={{ '& > *': { display: { md: 'inline !important' } } }}
                 primary='Mejl adress:'
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', position: { md: 'absolute' }, left: { md: '240px' } }}
                       component="span"
                       variant="body2"
                       color="text.primary"
@@ -190,13 +205,15 @@ class UserItemBase extends Component {
                 }
               />
             </ListItem>
-            <ListItem alignItems="flex-start">
+            <Divider component="li" />
+            <ListItem alignItems="flex-start" sx={{ padding: { md: '5px 0 !important' } }}>
               <ListItemText
+                sx={{ '& > *': { display: { md: 'inline !important' } } }}
                 primary='ID:'
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', position: { md: 'absolute' }, left: { md: '240px' } }}
                       component="span"
                       variant="body2"
                       color="text.primary"
@@ -207,7 +224,7 @@ class UserItemBase extends Component {
                 }
               />
             </ListItem>
-            <ListItem alignItems="flex-start">
+            <ListItem alignItems="flex-start" sx={{ padding: { md: '5px 0 !important' } }}>
               <Button
                 type="button"
                 onClick={this.onSendPasswordResetEmail}
@@ -216,8 +233,9 @@ class UserItemBase extends Component {
               </Button>
             </ListItem>
           </List>
-        )}
-      </div>
+        )
+        }
+      </Box>
     );
   }
 }
