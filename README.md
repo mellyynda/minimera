@@ -18,6 +18,12 @@ Folk okså ville gärna:
 gemensamt.
 
 ## Screenshots
+<img src="src/assets/screenshots/homeDesktop.png" width="100%"/>
+
+<img src="src/assets/screenshots/ProfileDesktop.png" display="inline-block" width="49%"/> <img src="src/assets/screenshots/adminDesktop.png" display="inline-block" width="49%"/>
+
+<img src="src/assets/screenshots/landingMob.png" width="16%"/> <img src="src/assets/screenshots/signUpMob.png" width="16%"/> <img src="src/assets/screenshots/homeMob.png" width="16%"/> <img src="src/assets/screenshots/itemMob.png" width="16%"/> <img src="src/assets/screenshots/AdminMob.png" width="16%"/> <img src="src/assets/screenshots/adminSingleUserMob.png" width="16%"/>
+
 
 ## Features
 * Inloggning med namn, mail och lösenord (Firebase Authentication)
