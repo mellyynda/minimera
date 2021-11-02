@@ -83,6 +83,7 @@ export default config;
 4. Spara och kör först `npm install` och sen `npm run start` i terminalen.
 
 ## Links
+[Github](https://github.com/mellyynda/minimera)
 [Prototype](https://www.figma.com/proto/MXs67a7X6klRmHE9auf2gR/teamprojekt-3-riktiga-figman?node-id=102%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=102%3A2)  
 [Slides](https://docs.google.com/presentation/d/1zd6kyqf3MVkFf39yClkCc9Zy6RSK7x5-yLrUWIt7pdY/edit?usp=sharing) 
 [Circular economy google doc](https://docs.google.com/document/d/1DPPQYTi_M_Vg2JRuyIxPTRpBPZIgiAWZogmuiUR4Mo0/edit?usp=sharing)  
