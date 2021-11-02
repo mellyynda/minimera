@@ -1,6 +1,6 @@
 # minimera
 Minimera är en applikation som fokuserar på att främja mer återanvändande och delning av saker som kanske används sällan av sina ägare men som det finns behov av i samhället.
-
+###### Developed by Melinda Sava
 ## Table of contents
 * [**UX**](#ux)  
 * [**Screenshots**](#screenshots)
@@ -24,6 +24,7 @@ För att tillgodose användarnas behov har vi implementerat:
 - Direkt kontakt med annönsör  
 
 Dessutom har vi haft i åtanke flera användare behöv som [framtida funktioner av appen](#future-features).
+Har kan man hitta en [tydlig presentation](ux/Presentation.pdf) samt en [dokument med hela grupens arbete](ux/CirkulärEkonomiDoc.pdf).
 
 ## Screenshots
 <img src="src/assets/screenshots/homeDesktop.png" width="100%"/>
