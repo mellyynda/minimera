@@ -31,17 +31,17 @@ const ItemList = ({ authUser, items, onRemoveItem, onEditItem, own }) => {
     <Container
       sx={{ maxWidth: { md: '850px' }, display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', position: 'relative' }}>
       <SearchContainer>
-        <SearchIcon />
+        <SearchIcon color='var(--text-color)' />
         <TextField
           id="standard-search"
           label="Search field"
           type="search"
           variant="standard"
-          sx={{ display: 'block', width: '100%', '&>*': { width: '100%' } }}
+          sx={{ color: 'inherit', display: 'block', width: '100%', '&>*': { width: '100%' } }}
           onChange={e => handleChange(e)}
         />
       </SearchContainer>
-      {/* {console.log(items, shownItems.length, shownItems)} */}
+
       {filteredItems.length > 0 && filteredItems.map(item => {
         if (own && authUser.uid === item.userId) {
           return (<Item

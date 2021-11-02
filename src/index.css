@@ -2,6 +2,7 @@
 
 :root {
   --main-color: #0A8B74;
+  --text-color: #223843;
 }
 
 *{
@@ -12,7 +13,7 @@
 
 body {
   margin: 0;
-  color: #212121;
+  color:var(--text-color);
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

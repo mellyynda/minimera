@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-
 import { withAuthorization } from '../Session';
 import { MainHeading } from '../Styled';
 
@@ -15,7 +14,6 @@ const StyledMainHeading = styled(MainHeading)`
 `;
 
 const StyledCard = styled(Card)`
-// box-shadow:  0px 4px 4px 0 rgba(0, 0, 0, 25%), 0px 16px 24px 0 rgba(0, 0, 0, 14%), 0px 6px 30px 0 rgba(0, 0, 0, 12%);
 box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
 0 2px 4px rgba(0,0,0,0.07), 
 0 4px 8px rgba(0,0,0,0.07), 
@@ -26,7 +24,7 @@ box-shadow: 0 1px 2px rgba(0,0,0,0.07),
 const AboutPage = () => {
   const height = window.innerHeight - 56;
   return (
-    <Box maxWidth="md" sx={{ '& > :not(style)': { m: 3 }, margin: '0 auto', height: height, overflow: 'auto', marginBottom: '56px' }}>
+    <Box maxWidth="md" sx={{ '& > :not(style)': { m: 3, color: 'var(--text-color)' }, margin: '0 auto', height: height, overflow: 'auto', marginBottom: '56px' }}>
       <StyledMainHeading>Hur funkar det?</StyledMainHeading>
       <StyledCard variant="outlined">
         <CardContent>
@@ -58,7 +56,6 @@ const AboutPage = () => {
     </Box>
   )
 };
-
 
 const condition = authUser => !!authUser;
 

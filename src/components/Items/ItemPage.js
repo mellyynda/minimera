@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 import Dialog from '@mui/material/Dialog';
@@ -10,8 +10,8 @@ import CallIcon from '@mui/icons-material/Call';
 import Link from '@mui/material/Link';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-
-import { MainButton } from '../Styled'
+import Button from '@mui/material/Button';
+import ScreenSizeContext from '../Helpers/screenSizeContext';
 
 const ContactDetails = styled(Link)`
 flex: 1;
@@ -23,9 +23,19 @@ justify-content: center;
 background: #fff;
 `;
 
+
 const ItemPage = ({ viewItem, toggleItemView, item, image }) => {
+  const windowDimensions = useContext(ScreenSizeContext);
   const { title, description, contact } = item;
   const [show, setShow] = useState(false);
+
+  async function copyToClipboard(text) {
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      return document.execCommand('copy', true, text);
+    }
+  }
 
   return (
     <Dialog
@@ -69,13 +79,18 @@ const ItemPage = ({ viewItem, toggleItemView, item, image }) => {
         {show ? < KeyboardArrowUpIcon /> : < KeyboardArrowDownIcon />}
       </p>
       {show ?
-        <ContactDetails href={'tel:' + contact} >
-          <CallIcon />
-          <Typography variant="p" component="div">
-            {contact}
-          </Typography>
-        </ContactDetails>
-        : null}
+        <>
+          {windowDimensions.width < 900 ?
+            <ContactDetails href={'tel:' + contact} >
+              <CallIcon />
+              <Typography variant="p" component="div">
+                {contact}
+              </Typography>
+            </ContactDetails>
+            :
+            <Button variant="contained" onClick={copyToClipboard(contact)} sx={{ marginBottom: '20px' }}>Kopiera telefonnummer: {contact}</Button>
+          }
+        </> : null}
     </Dialog >
   )
 }

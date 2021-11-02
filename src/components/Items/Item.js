@@ -194,10 +194,9 @@ class Item extends Component {
                   image={images[item.title][1]}
                   alt={item.title}
                 />}
-              {/* <img style={{ width: '60px' }} src={image} alt='test' /> */}
               <CardContent>
-                <Typography variant="subtitle1" component="div" style={{ fontWeight: '500' }}>{item.title}</Typography>
-                <Typography variant="body2">{item.description}</Typography>
+                <Typography variant="subtitle1" component="div" style={{ color: 'var(--text-color)', fontWeight: '500' }}>{item.title}</Typography>
+                <Typography variant="body2" style={{ color: 'var(--text-color)' }}>{item.description}</Typography>
               </CardContent>
               <CardActions sx={{ position: 'absolute', bottom: '0', left: '0', background: '#E7F3F3', width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                 <Button

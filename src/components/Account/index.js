@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
@@ -11,6 +11,7 @@ import SignOutButton from '../SignOut';
 import { MainHeading } from '../Styled';
 import { MainButton as LinkButton } from '../Landing';
 import { MainButton } from '../Styled';
+import ScreenSizeContext from '../Helpers/screenSizeContext';
 import * as ROUTES from '../../constants/routes';
 
 const StyledMainButton = styled(MainButton)`
@@ -28,27 +29,10 @@ top: 55px;
 right 15px;
 `
 
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-}
-
 const AccountPage = () => {
+  const windowDimensions = useContext(ScreenSizeContext);
   const [show, setShow] = useState(false);
   const style = { maxWidth: '250px', margin: { xs: '0 auto 15px', md: '0 0 15px' }, color: 'rgba(0, 0, 0, 0.6)' };
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <AuthUserContext.Consumer>
