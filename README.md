@@ -7,6 +7,7 @@ Minimera är en applikation som fokuserar på att främja mer återanvändande o
 * [**Features**](#features)
 * [**Future-Features**](#future-features)
 * [**Technologies**](#technologies)
+* [**Start project**](#start-project)
 * [**Links**](#links)
 
 ## UX
@@ -61,6 +62,25 @@ Dessutom har vi haft i åtanke flera användare behöv som [framtida funktioner 
 * Firebase
 * Styled Components
 * Material Design
+
+## Start project
+1. Skapa en fil med nämnet config.js och lägg den i src/components/Firebase.
+2. Skapa en Firebase projekt med Realtime Database [enligt dokumentationen](https://firebase.google.com/docs/database/web/start).
+3. Initialisera Realtime Database JavaScript SDK genom att kompletera följande kod med uppgifterna från din Firebase projekt och lägga till de i config.js: 
+``` 
+const config = {
+  apiKey: "din API nyckel",
+  authDomain: "projektID.firebaseapp.com",
+  databaseURL: "https://DinDatabasNamn.europe-west1.firebasedatabase.app",
+  projectId: "projekt ID",
+  storageBucket: "bucket.appspot.com",
+  appId: "app ID",
+  measurementId: "measurementId"
+};
+
+export default config; 
+```
+4. Spara och kör `npm run start` i terminalen.
 
 ## Links
 [Prototype](https://www.figma.com/proto/MXs67a7X6klRmHE9auf2gR/teamprojekt-3-riktiga-figman?node-id=102%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=102%3A2)  
