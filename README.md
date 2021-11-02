@@ -16,6 +16,13 @@ Folk okså ville gärna:
 - Inte låna ut ömtåliga eller dyra saker.
 - Dela kostnaden med andra (gemensamt ägande) så att man kan investera i saker 
 gemensamt.
+För att tillgodose användarnas behov har vi implementerat:
+- Inloggning med användarnamn, e-post och lösenord samt föreslagit vidareutveckling av Bank ID-inloggning
+- Sök funktion
+- Mer synlig lägg till knap
+- Direkt kontakt med annönsör  
+
+Dessutom har vi haft i åtanke flera användare behöv som [framtida funktioner av appen](#future-features).
 
 ## Screenshots
 <img src="src/assets/screenshots/homeDesktop.png" width="100%"/>
@@ -57,8 +64,8 @@ gemensamt.
 
 ## Links
 [Prototype](https://www.figma.com/proto/MXs67a7X6klRmHE9auf2gR/teamprojekt-3-riktiga-figman?node-id=102%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=102%3A2)  
+[Slides](https://docs.google.com/presentation/d/1zd6kyqf3MVkFf39yClkCc9Zy6RSK7x5-yLrUWIt7pdY/edit?usp=sharing) 
 [Circular economy google doc](https://docs.google.com/document/d/1DPPQYTi_M_Vg2JRuyIxPTRpBPZIgiAWZogmuiUR4Mo0/edit?usp=sharing)  
 [Trello Scrumboard](https://trello.com/b/TeVvQq2w/)  
 [Idea board](https://ideaboardz.com/for/Cirkul%C3%A4r%203/4061359)  
-[Survey](https://docs.google.com/forms/d/1Nip0TFxusobZgY4oZTIfVype6Yrd2FOaZCgiUbU_Ezo/edit)  
-[Slides](https://docs.google.com/presentation/d/1zd6kyqf3MVkFf39yClkCc9Zy6RSK7x5-yLrUWIt7pdY/edit?usp=sharing)  
+[Survey](https://docs.google.com/forms/d/1Nip0TFxusobZgY4oZTIfVype6Yrd2FOaZCgiUbU_Ezo/edit)   
