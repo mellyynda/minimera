@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-
 import Box from '@mui/material/Box';
 import DialogContent from '@mui/material/DialogContent';
 import Dialog from '@mui/material/Dialog';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-
 import { MainButton } from '../Styled'
-
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import ItemList from './ItemList.js';
@@ -122,7 +119,7 @@ class ItemsBase extends Component {
           <div>
             {loading && <div>Loading ...</div>}
 
-            {items ? (
+            {items.length > 0 ? (
               <ItemList
                 authUser={authUser}
                 items={items}
