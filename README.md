@@ -2,12 +2,12 @@
 Minimera är en applikation som fokuserar på att främja mer återanvändande och delning av saker som kanske används sällan av sina ägare men som det finns behov av i samhället.
 
 ## Table of contents
-* [**UX**](#UX-)  
-* [**Screenshots**](#Screenshots-)
-* [**Features**](#Features-)
-* [**Future-Features**](#Future-Features-)
-* [**Technologies**](#Technologies-)
-* [**Links**](#Links-)
+* [**UX**](#ux)  
+* [**Screenshots**](#screenshots)
+* [**Features**](#features)
+* [**Future-Features**](#future-features)
+* [**Technologies**](#technologies)
+* [**Links**](#links)
 
 ## UX
 Gruppens UX Review visade att fölk var intresserade av möjligheten av att kunna låna från personer i geografisk närhet men att de hade svårt att låna till vem som helst och önskade se namn eller betyg på andra användare. Många ville ha en begränsad lånetid och få notis innan deadline.
